@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/Response.php';
+
 class Ajax_API extends API_Config {
 
     public function __construct()
@@ -8,11 +10,11 @@ class Ajax_API extends API_Config {
 
             if (isset($_GET['token']) && $_GET['token'] == '1234') {
 
-                echo $this->filterRequest($_GET);
+                Response::formatResponse($this->filterRequest($_GET));
 
             } else {
 
-                echo json_encode(['data' => null, 'error' => 'Bad token']);
+                Response::formatResponse(['data' => null, 'error' => 'Bad token']);
             }
         }
     }
